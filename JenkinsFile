@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    environment {
+        BITBUCKET_REPO = "git@bitbucket.org:ventit/google-sde-prep.git"
+        GITHUB_REPO = "git@github.com:bhavyamodi/progress-sheet-sde.git"
+        WORKSPACE_DIR = "progress-sheet-sde"
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                sh 'rm -rf $WORKSPACE_DIR'
+            }
+        }
+
+        stage('Clone from Bitbucket') {
+            steps {
+                sh 'git clone --mirror $BITBUCKET_REPO $WORKSPACE_DIR'
+            }
+        }
+
+        stage('Push to GitHub') {
+            steps {
+                dir("$WORKSPACE_DIR") {
+                    sh 'git push --mirror $GITHUB_REPO'
+                }
+            }
+        }
+    }
+}
