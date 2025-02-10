@@ -1,0 +1,30 @@
+server:
+  port: 8014
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: prep
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      enabled: false
+      config:
+        enabled: false
+      reload:
+        enabled: false
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/aumron?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+    username: admin
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
