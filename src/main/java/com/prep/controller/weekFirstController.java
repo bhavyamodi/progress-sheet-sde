@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class weekFirstController extends BaseController{
     @GetMapping("/auth")
-    public boolean getData() {
+    public boolean getDataTest() {
         return true;
     }
 }
